@@ -95,6 +95,7 @@ int lab3_init()
 		cout << "CreateSemaphore error: SemI" << GetLastError() << endl;
 		return 1;
 	}
+
 	char const* textsA = "a";
 	Thread[0] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)threads_unsynchronized, (void*)textsA, 0, &ThreadID);
 	if (Thread[0] == NULL)
@@ -103,7 +104,6 @@ int lab3_init()
 		return 1;
 	}
 	WaitForSingleObject(Thread[0], INFINITE);
-
 
 	char const* textsBCD[] = { "b", "c", "d" };
 	Thread[0] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)thread_b, (void*)textsBCD[0], 0, &ThreadID);
@@ -177,7 +177,7 @@ int lab3_init()
 
 	count = 0;
 	char const* textsKM[] = { "k","m" };
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		Thread[i] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)threads_unsynchronized, (void*)textsKM[i], 0, &ThreadID);
 		if (Thread[i] == NULL)
